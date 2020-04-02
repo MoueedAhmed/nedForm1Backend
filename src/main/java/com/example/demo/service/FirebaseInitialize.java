@@ -8,12 +8,10 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 
 @Service
@@ -23,11 +21,11 @@ public class FirebaseInitialize {
     public void initialize() {
         try {
 
-            FileInputStream serviceAccount =
-                    new FileInputStream("./src/main/resources/serviceAccount.json");
+//            FileInputStream serviceAccount =
+//                    new FileInputStream(file);
 
             FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .setCredentials(GoogleCredentials.fromStream(new ClassPathResource("servicefire.json").getInputStream()))
                     .setDatabaseUrl("https://demospring-c7730.firebaseio.com")
                     .build();
 

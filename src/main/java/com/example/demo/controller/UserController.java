@@ -17,6 +17,11 @@ public class UserController {
     @Autowired
     FirebaseService firebaseService;
 
+    @GetMapping(value="/")
+    public String homepage(){
+        return "index";
+    }
+
     @GetMapping("/getUserDetails")
     @ResponseBody
     public Person getUserDetails(@RequestHeader String rollNo) throws ExecutionException, InterruptedException {
